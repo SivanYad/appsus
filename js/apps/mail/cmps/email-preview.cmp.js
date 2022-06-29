@@ -2,9 +2,8 @@ export default {
 props: ['email'],
  template: `
  <section class="email-preview">
-    <h4>{{ email.subject }}</h4>
+    <h4 :class="titleStyle">{{ email.subject }}</h4>
     <p> {{email.body}} </p>
-    <p>{{ email.isRead }}</p>
  </section>
 `,
 data() {
@@ -12,10 +11,12 @@ return {}
 },
 created() {},
 methods: {
+    
+},
+computed: {
     titleStyle() {
-        return { bold: this.email.isRead === true,  }
+        return { bold: this.email.isRead === true, light: this.email.isRead === false }
     }
 },
-computed: {},
 unmounted() {},
 }

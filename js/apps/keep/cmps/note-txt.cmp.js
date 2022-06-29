@@ -1,7 +1,7 @@
 export default {
     props:['info'],
  template: `
- <p>{{info.txt}}</p>
+ <p>Here will be a text </p>
 `,
 data() {
 return {

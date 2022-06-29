@@ -1,5 +1,4 @@
 export default {
-    props:['notes'],
  template: `
 `,
 data() {

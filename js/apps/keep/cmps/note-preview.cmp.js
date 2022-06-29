@@ -1,6 +1,7 @@
 export default {
-    props:['notes'],
+    props:['note'],
  template: `
+ 
 `,
 data() {
 return {};

@@ -1,14 +1,16 @@
 import appHeader from "./cmps/app-header.cmp.js";
 import { router } from './router.js';
+import keepApp from "./pages/keep-app.cmp.js";
 const options= {
  template: `
  <section>
     <app-header/>
-    <router-view/>
+    <keep-app/>
  </section>
 `,
 components: {
     appHeader,
+    keepApp
 
 },
 data() {

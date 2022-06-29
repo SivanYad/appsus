@@ -7,7 +7,15 @@ data() {
 return {};
 },
 created() {},
-methods: {},
+methods: {
+    getInfoType(){
+        if (this.note.type==='note-txt'){
+            
+        }
+        
+
+    }
+},
 computed: {},
 unmounted() {},
 };

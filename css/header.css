@@ -1,14 +1,11 @@
-.main-logo{
-    font-family: Roboto,sans-serif;
-    
 
-}
 .app-header svg{
     height: 4em;
     width: 4em;
 
 }
 .app-header{
+    font-family: Roboto,sans-serif;
     flex-direction: row;
     background-color: rgb(34, 38, 38);
     color: rgb(255, 249, 249);

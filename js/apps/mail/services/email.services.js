@@ -50,7 +50,7 @@ function remove(emailId) {
 }
 
 function get(emailId) {
-    return storageServices.get(emailId, emailId)
+    return storageServices.get(EMAIL_KEY, emailId)
 }
 
 function save(email) {

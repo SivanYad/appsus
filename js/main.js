@@ -1,14 +1,18 @@
 import appHeader from "./cmps/app-header.cmp.js";
 import { router } from './router.js';
+import emailApp from "./pages/email-app.cmp.js";
+
 const options= {
  template: `
  <section>
     <app-header/>
-    <router-view/>
+    <email-app />
+    <!-- <router-view/> -->
  </section>
 `,
 components: {
     appHeader,
+    emailApp
 
 },
 data() {

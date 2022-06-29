@@ -10,6 +10,9 @@ export default {
     <email-list :emails="emailsForDisplay" />
  </section>
 `,
+components: {
+    emailList
+},
 data() {
 return {
     emails: null

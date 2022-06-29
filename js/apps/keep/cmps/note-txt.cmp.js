@@ -1,7 +1,9 @@
 export default {
     props:['info'],
  template: `
- <p>{{info.txt}}</p>
+<section>
+    <p>{{info.txt}}</p>
+</section>
 `,
 data() {
 return {

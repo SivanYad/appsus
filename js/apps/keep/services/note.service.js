@@ -1,6 +1,7 @@
 import {storageServices} from '../../../services/async-storage-service.js'
 export const notesService = {
-    query
+    query,
+    remove
 }
 const NOTES_KEY = 'notesDB'
 
@@ -12,6 +13,10 @@ function query() {
         }
         return notes
     })
+}
+
+function remove(noteId) {
+    return storageServices.remove(NOTES_KEY, noteId)
 }
 
 function _createNotes() {
@@ -27,8 +32,8 @@ function _createNotes() {
         id: "n102",
         type: "note-img",
         info: {
-            url: "http://some-img/me",
-            title: "Bobi and Me"
+            url: "../../../imgs/img1.png",
+            title: "Me and Everyone here"
         },
         style: {
             backgroundColor: "#00d"

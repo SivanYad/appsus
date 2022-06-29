@@ -14,6 +14,7 @@ export default {
 
     </form>
      <note-Filter @filtered="setFilter" :notes="notes"/>
+     <note-creator/>
      <note-List :notes="notes"  @selected="selectNote"  @remove="removeNote" />
 
  </section>

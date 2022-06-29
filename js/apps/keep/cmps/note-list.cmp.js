@@ -2,6 +2,7 @@ import notePreview from "./note-preview.cmp.js";
 import noteTxt from "./note-txt.cmp.js";
 import noteImg from "./note-img.cmp.js";
 import noteTodos from "./note-todos.cmp.js";
+import noteBgColor from "./note-bg-color.cmp.js";
 export default {
     props: ["notes"],
     template: `
@@ -11,6 +12,9 @@ export default {
                         :info="note.info" >
                     </component>
                     <button @click.stop="remove(note.id)">🗑</button>
+                    <button @click.stop="openModal">🎨</button>
+                    <!-- <note-bg-color v-if="showColorModal" :note="note"/> -->
+                       
               </article>
       </section>
 `,
@@ -18,10 +22,13 @@ export default {
         notePreview,
         noteTxt,
         noteImg,
-        noteTodos
+        noteTodos,
+        noteBgColor
     },
     data() {
-        return {};
+        return {
+            showColorModal: false
+        };
     },
     created() { },
     methods: {
@@ -30,6 +37,10 @@ export default {
         },
 
     },
-    computed: {},
+    computed: {
+        openModal() {
+            return this.showColorModal = true
+        }
+    },
     unmounted() { },
 };

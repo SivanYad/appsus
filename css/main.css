@@ -1,3 +1,12 @@
 @import "apps/keep/note-list.css";
 @import "apps/keep/note-preview.css";
 @import "header.css";
+/* email preview class */
+.light {
+    text-decoration: none;
+    font-weight: lighter;
+}
+
+.bold {
+    color: red;
+}

@@ -1,5 +1,6 @@
 import { emailService } from "../apps/mail/services/email.services.js";
 import emailList from "../apps/mail/cmps/email-list.cmp.js";
+import emailDetails from "../apps/mail/pages/email-details.cmp.js";
 
 export default {
  template: `
@@ -8,6 +9,8 @@ export default {
     <!-- <pre>{{ emails }}</pre> -->
     
     <email-list :emails="emailsForDisplay" />
+    
+    <router-view />
  </section>
 `,
 components: {

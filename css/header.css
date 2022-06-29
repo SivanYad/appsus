@@ -1,8 +1,33 @@
 .main-logo{
     font-family: Roboto,sans-serif;
+    
 
 }
 .app-header svg{
     height: 4em;
+    width: 4em;
+
+}
+.app-header{
+    flex-direction: row;
+    background-color: rgb(34, 38, 38);
+    color: rgb(255, 249, 249);
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding:0.5rem;
+}
+.nav-bar a{
+    color: rgb(255, 249, 249);
+    text-decoration: none;
+    text-transform: capitalize;
+    justify-content: center;
+    align-self: center;
+    padding: 33px;
+}
+
+.logo-container{
+    padding-inline-start: 1em;
+
 
 }

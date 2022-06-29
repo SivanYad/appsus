@@ -1,0 +1,8 @@
+.note-preview-container{
+    /* display: grid; */
+    background-color: rgb(213, 243, 204);
+    width: fit-content;
+    padding: 1em;
+    border-radius: 1rem;
+    margin: 1em;
+}

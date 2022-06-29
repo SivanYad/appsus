@@ -1,6 +1,8 @@
 @import "apps/keep/note-list.css";
 @import "apps/keep/note-preview.css";
 @import "header.css";
+@import "basic/fronts.css";
+@import "basic/helpers.css";
 /* email preview class */
 .light {
     text-decoration: none;
@@ -9,4 +11,12 @@
 
 .bold {
     color: red;
+}
+
+* {
+    box-sizing: border-box;
+}
+body{
+    margin: 0;
+
 }

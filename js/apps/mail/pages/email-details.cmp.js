@@ -11,6 +11,7 @@ export default {
     <p>Sent At: {{formatDate}} </p>
     <p>To: {{this.email.to}}</p>
     <router-link to="/email">Back to list</router-link>
+    <button @click="remove(email.id)">Delete Email</button>
  </section>
 `,
 data() {
@@ -27,21 +28,13 @@ created() {
     })
 },
 methods: {
-    deleteMail() {
+  
         /// delete in the morning use $emit or event bus instead, no access to email list
-        const id = this.id
-        emailService.remove(id)
-            .then(() => {
-                console.log(`Email ${id} deleted succesfully`)
-            
-            })
-    },
-    // getNewEmailDetails() {
+        remove(id){
+            this.$emit('remove', id)
 
-    //     const email =  emailService.get(this.emailId).then(email =>  {this.email = email})
-    //     console.log(email)
-    //     return email
-    //     }
+        }
+    ,
     
 },
 computed: {

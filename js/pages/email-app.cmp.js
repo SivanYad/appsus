@@ -10,7 +10,7 @@ export default {
 
     
     <email-list :emails="emailsForDisplay"  @selected="selectEmail" />
-    <email-details v-if="isMailClicked"  :emailId="emailId" />
+    <email-details v-if="isMailClicked"  :emailId="emailId" @remove="removeEmail" />
     <router-view />
  </section>
 `,
@@ -36,6 +36,17 @@ methods: {
         
         router.push({ path: `/email/${this.emailId}` }) 
         // router.push({ name: 'email', params: { emailId: this.emailId} })
+    },
+    removeEmail(id) {
+        emailService.remove(id)
+            .then(() => {
+                console.log(`Deleted successfully ${id}`)
+                const idx = this.emails.findIndex((email) => email.id ===id)
+                this.emails.splice(idx, 1)
+
+            }).catch(err => {
+                console.log(err)
+            })
     }
 },
 computed: {

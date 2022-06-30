@@ -17,10 +17,9 @@ export default {
         </div>
         <div v-if="isTodo">
             <form @submit.prevent="createNoteTypeTodo">
-            <input type="text">
-            <input type="text">
-            <input type="text">
+            <input type="text" v-for="(todo,idx) in todoList" v-model="todoList[idx]" @keypress="addTodo(idx)">
             <button>close</button>
+            <pre>{{todoList}}</pre>
             </form>
         </div>
         <div v-if="isImg">
@@ -50,10 +49,8 @@ export default {
                     txt:'',
                     doneAt:''
                 }
-            
-            }
-
-
+            },
+            todoList:['']
         };
     },
     created() { },
@@ -81,6 +78,11 @@ export default {
             const noteInfo={
 
             }
+        },
+        addTodo(idx){
+          if(idx===this.todoList.length-1){
+            this.todoList.push('')
+          }
         },
 
 

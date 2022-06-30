@@ -28,6 +28,7 @@ function _createNotes() {
         type: "note-txt",
         isPinned: true,
         info: {
+            label:'',
             txt: "Fullstack Me Baby!"
         }
     },
@@ -55,7 +56,7 @@ function _createNotes() {
     },
     {
         id:"n104",
-        
+
     }
     ]
     let notesFromStorage = utilService.loadFromStorage(NOTES_KEY);
@@ -73,5 +74,5 @@ function createNote(noteType,noteInfo){
         info: noteInfo
     }
     save(note)
-
+    return note
 }

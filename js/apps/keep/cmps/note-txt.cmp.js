@@ -2,6 +2,7 @@ export default {
     props:['info'],
  template: `
 <section>
+    <p>{{info.label}}</p>
     <p>{{info.txt}}</p>
 </section>
 `,

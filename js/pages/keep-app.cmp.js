@@ -7,7 +7,7 @@ import noteCreator from "../apps/keep/cmps/note-creator.cmp.js";
 export default {
     template: `
  <section v-if="notes">
-     <note-creator/>
+     <note-creator :notes="notes"/>
      <note-Filter @filtered="setFilter" :notes="notes"/>
      <note-List :notes="notes"  @selected="selectNote"  @remove="removeNote" />
  </section>

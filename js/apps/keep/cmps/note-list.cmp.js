@@ -3,20 +3,21 @@ import noteTxt from "./note-txt.cmp.js";
 import noteImg from "./note-img.cmp.js";
 import noteTodos from "./note-todos.cmp.js";
 import noteBgColor from "./note-bg-color.cmp.js";
+import { notesService } from "../services/note.service.js";
 export default {
     props: ["notes"],
     template: `
       <section class="note-list-container">
               <article class="note" @click.self v-for="(note,idx) in notes" :key="note.id"  @click="select(note)">
-              <component :is="note.type"  
-                        :info="note.info" >
-                    </component>
-                    <button @click.stop="remove(note.id)">🗑</button>
-                    <button @click.stop="openModal">🎨</button>
-                    <!-- <note-bg-color v-if="showColorModal" :note="note"/> -->
-                       
-              </article>
-      </section>
+                  <component :is="note.type"  
+                  :info="note.info" >
+                </component>
+                <button @click.stop="remove(note.id)">🗑</button>
+                <button @click.stop="openModal(note.id)"><input type="color">🎨</button>
+                
+                    
+                </article>
+            </section>
 `,
     components: {
         notePreview,
@@ -35,12 +36,14 @@ export default {
         remove(id) {
             this.$emit('remove', id);
         },
-
-    },
-    computed: {
-        openModal() {
-            return this.showColorModal = true
+        openModal(id) {
+            this.notes.find
+           this.showColorModal = true
         }
     },
-    unmounted() { },
-};
+
+    computed: {
+      
+    },
+    unmounted() {}
+}

@@ -4,21 +4,19 @@
 @import "basic/fronts.css";
 @import "basic/helpers.css";
 @import "apps/mail/email-details.css";
+@import "apps/mail//email-app.css";
+@import "apps/mail//email-details.css";
+@import "apps/mail//email-nav.css";
+@import "apps/mail/email-preview.css";
 /* email preview class */
 
-.light {
-    text-decoration: none;
-    font-weight: lighter;
-}
 
-.bold {
-    color: red;
-}
 
 * {
     box-sizing: border-box;
 }
 body{
     margin: 0;
+    width: 100%;
 
 }

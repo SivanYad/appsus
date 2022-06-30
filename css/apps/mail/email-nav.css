@@ -1,0 +1,6 @@
+.email-nav{
+    height: inherit;
+    flex-direction: column;
+    padding: 3.5em;
+    justify-content: space-between;
+}

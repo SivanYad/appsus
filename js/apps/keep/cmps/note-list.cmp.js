@@ -13,7 +13,7 @@ export default {
                   :info="note.info" >
                 </component>
                 <button @click.stop="remove(note.id)">🗑</button>
-                <button @click.stop="openModal(note.id)"><input type="color">🎨</button>
+                <button @click.stop=""><input type="color"></button>
                 
                     
                 </article>
@@ -36,10 +36,11 @@ export default {
         remove(id) {
             this.$emit('remove', id);
         },
-        openModal(id) {
-            this.notes.find
-           this.showColorModal = true
+      
+        select(note){
+            this.$emit('selected',note)
         }
+
     },
 
     computed: {

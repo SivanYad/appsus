@@ -5,7 +5,7 @@ export default {
  template: `
     <section class="emails-list">
 
-        <ul>
+        <ul class="clean-list">
             <li  v-for="email in emails" :key="email.id" class="email-preview-container">
                <email-preview :email="email" @click="openMail(email)" /> 
             </li>
@@ -24,6 +24,7 @@ methods: {
     openMail(email) {
         this.$emit("selected", email)
     }
+    
 },
 computed: {},
 unmounted() {},

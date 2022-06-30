@@ -4,19 +4,24 @@ import noteList from "../apps/keep/cmps/note-list.cmp.js";
 import notePreview from "../apps/keep/cmps/note-preview.cmp.js";
 import { eventBus } from "../services/eventBus-service.js"
 import noteCreator from "../apps/keep/cmps/note-creator.cmp.js";
+import noteDetails from "../apps/keep/pages/note-details.cmp.js";
+import { router } from "../router.js";
 export default {
     template: `
  <section v-if="notes">
      <note-creator :notes="notes"/>
+     <note-details :note="selectedNote"/>
+     <router-view/>
      <note-Filter @filtered="setFilter" :notes="notes"/>
      <note-List :notes="notes"  @selected="selectNote"  @remove="removeNote" />
- </section>
+    </section>
 `,
     components: {
         noteFilter,
         noteList,
         notePreview,
-        noteCreator
+        noteCreator,
+        noteDetails,
     },
     data() {
         return {

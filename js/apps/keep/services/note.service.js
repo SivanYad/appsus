@@ -1,22 +1,25 @@
+import {utilService} from '../../../services/util-service.js'
 import {storageServices} from '../../../services/async-storage-service.js'
 export const notesService = {
     query,
-    remove
+    remove,
+    createNote,
+    save
 }
 const NOTES_KEY = 'notesDB'
-
+_createNotes()
 function query() {
-    return storageServices.query(NOTES_KEY).then(notes => {
-        if (!notes ||!notes.length) {
-            console.log('hi');
-            notes = _createNotes()
-        }
+    return storageServices.query(NOTES_KEY).then(notes=>{
         return notes
     })
 }
 
 function remove(noteId) {
     return storageServices.remove(NOTES_KEY, noteId)
+}
+function save(note) {
+    if (note.id) return storageServices.put(NOTES_KEY, note)
+    else return storageServices.post(NOTES_KEY, note)
 }
 
 function _createNotes() {
@@ -25,6 +28,7 @@ function _createNotes() {
         type: "note-txt",
         isPinned: true,
         info: {
+            label:'',
             txt: "Fullstack Me Baby!"
         }
     },
@@ -49,7 +53,26 @@ function _createNotes() {
                 { txt: "Coding power", doneAt: 187111111 }
             ]
         }
+    },
+    {
+        id:"n104",
+
     }
     ]
+    let notesFromStorage = utilService.loadFromStorage(NOTES_KEY);
+    if (!notesFromStorage || !notesFromStorage.length) {
+
+        utilService.saveToStorage(NOTES_KEY,notes)
+    }
     return notes
+
+}
+
+function createNote(noteType,noteInfo){
+    const note={
+        type: noteType,
+        info: noteInfo
+    }
+    save(note)
+    return note
 }

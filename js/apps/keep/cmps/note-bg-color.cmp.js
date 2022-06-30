@@ -27,7 +27,7 @@ export default {
         checkClass() {
             const div = this.$refs.noteBg
             this.noteBg = div.getAttribute('class')
-            console.log(this.noteBg);
+            console.log(div);
         }
     },
     computed: {

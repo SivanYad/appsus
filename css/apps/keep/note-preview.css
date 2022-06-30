@@ -1,6 +1,4 @@
-.note-preview-container img{
-    height: 200px;
-}
+
 .background-Color-container div{
     height: 100px;
     width: 100px;
@@ -13,4 +11,7 @@
 /* bg color container */
 .clr1{
     background-color: lightblue;
+}
+#upload-photo {
+    display: none;
 }

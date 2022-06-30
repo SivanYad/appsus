@@ -2,27 +2,21 @@ import { notesService } from "../apps/keep/services/note.service.js";
 import noteFilter from "../apps/keep/cmps/note-filter.cmp.js";
 import noteList from "../apps/keep/cmps/note-list.cmp.js";
 import notePreview from "../apps/keep/cmps/note-preview.cmp.js";
-import {eventBus} from "../services/eventBus-service.js"
+import { eventBus } from "../services/eventBus-service.js"
+import noteCreator from "../apps/keep/cmps/note-creator.cmp.js";
 export default {
     template: `
  <section v-if="notes">
-    <form @submit.prevent>
-        <input type="text">
-        <button>list</button>
-        <button>img</button>
-        <button>video</button>
-
-    </form>
+     <note-creator :notes="notes"/>
      <note-Filter @filtered="setFilter" :notes="notes"/>
-     <note-creator/>
      <note-List :notes="notes"  @selected="selectNote"  @remove="removeNote" />
-
  </section>
 `,
     components: {
         noteFilter,
         noteList,
-        notePreview
+        notePreview,
+        noteCreator
     },
     data() {
         return {

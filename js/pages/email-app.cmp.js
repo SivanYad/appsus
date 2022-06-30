@@ -38,7 +38,11 @@ methods: {
         emailData.sentAt = Date.now()
         emailData.isRead = false
         console.log(emailData)
-    
+        emailService.save(emailData).then((email) => {
+            emailService.query().then(emails => this.emails = emails)
+        }).catch(err => {
+            console.log(err)
+        })
     },
     selectEmail(email) {
         console.log("Selected email")

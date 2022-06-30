@@ -3,12 +3,13 @@ import { router } from "../router.js";
 import emailList from "../apps/mail/cmps/email-list.cmp.js";
 import emailDetails from "../apps/mail/pages/email-details.cmp.js";
 import emailCompose from "../apps/mail/cmps/email-compose.cmp.js";
+import emailFilter from "../apps/mail/cmps/email-filter.cmp.js";
 
 export default {
  template: `
  <section v-if="emails" class="emails-app-main">
     <h1>Here are some emails</h1>
-
+    <email-filter />
     
     <email-list :emails="emailsForDisplay"  @selected="selectEmail" />
     <button @click="isCompose = !isCompose">Write Email</button>
@@ -18,6 +19,7 @@ export default {
  </section>
 `,
 components: {
+    emailFilter,
     emailList,
     emailDetails,
     emailCompose
@@ -37,6 +39,7 @@ methods: {
     setCreateEmail(emailData) {
         emailData.sentAt = Date.now()
         emailData.isRead = false
+        emailData.labels = []
         console.log(emailData)
         emailService.save(emailData).then((email) => {
             emailService.query().then(emails => this.emails = emails)

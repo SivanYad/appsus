@@ -6,8 +6,8 @@ import noteBgColor from "./note-bg-color.cmp.js";
 export default {
     props: ["notes"],
     template: `
-      <section class="notes-list">
-              <article @click.self v-for="(note,idx) in notes" :key="note.id" class="note-preview-container" @click="select(note)">
+      <section class="note-list-container">
+              <article class="note" @click.self v-for="(note,idx) in notes" :key="note.id"  @click="select(note)">
               <component :is="note.type"  
                         :info="note.info" >
                     </component>

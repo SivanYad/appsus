@@ -1,11 +1,12 @@
 export default {
  template: `
  <section class="filter-container">
-    
-    <label>Search Email<input type="text" v-model="criteria.txtSearch"></label>
-    <label>Read<input type="radio" :value="true" v-model="isRead"></label>
-    <label>Unread<input type="radio" :value="false" v-model="isRead" ></label>
-    <button @click="search">Check</button>
+    <form>
+        <label>Search Email<input type="text" v-model="criteria.txtSearch"></label>
+        <select value="true" >Read</select>
+        <select value="false">Unread</select>
+        <button >Check</button>
+    </form>
  </section>
 `,
 data() {
@@ -20,7 +21,13 @@ created() {},
 methods: {
     search() {
         console.log(this.criteria)
-    }
+    },
+    // onSetRead() {
+    //     this.isRead = true
+    // },
+    // onSetUnread() {
+    //     this.isRead = false
+    // },
 },
 computed: {},
 unmounted() {},

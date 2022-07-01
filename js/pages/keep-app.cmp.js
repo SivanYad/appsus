@@ -11,7 +11,7 @@ export default {
  <section v-if="notes">
      <note-creator :notes="notes"/>
      <note-details v-if="selectedNote" :note="selectedNote"/>
-     <router-view/>
+     <!-- <router-view/> -->
      <note-Filter @filtered="setFilter" :notes="notes"/>
      <note-List :notes="notes"  @selected="selectNote"  @remove="removeNote" />
     </section>
@@ -27,7 +27,8 @@ export default {
         return {
             notes: null,
             filterBy: null,
-            selectedNote: null
+            selectedNote: null,
+            noteId:null
         };
     },
     created() {
@@ -38,7 +39,10 @@ export default {
             this.filterBy = filterBy
         },
         selectNote(note) {
+            console.log(note);
             this.selectedNote = note
+            this.noteId=note.id
+            // router.push({ path: `/keep/${this.noteId}` })
         },
         removeNote(id) {
             notesService.remove(id).then(() => {

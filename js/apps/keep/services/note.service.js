@@ -30,6 +30,9 @@ function _createNotes() {
         info: {
             label:'',
             txt: "Fullstack Me Baby!"
+        },
+        style: {
+            backgroundColor: "#ffff"
         }
     },
     {
@@ -52,10 +55,16 @@ function _createNotes() {
                 { txt: "Driving liscence", doneAt: null },
                 { txt: "Coding power", doneAt: 187111111 }
             ]
+        },
+        style: {
+            backgroundColor: "#ffff"
         }
     },
     {
         id:"n104",
+        style: {
+            backgroundColor: "#ffff"
+        }
 
     }
     ]

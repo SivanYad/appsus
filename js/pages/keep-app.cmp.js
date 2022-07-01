@@ -10,7 +10,7 @@ export default {
     template: `
  <section v-if="notes">
      <note-creator :notes="notes"/>
-     <note-details :note="selectedNote"/>
+     <note-details v-if="selectedNote" :note="selectedNote"/>
      <router-view/>
      <note-Filter @filtered="setFilter" :notes="notes"/>
      <note-List :notes="notes"  @selected="selectNote"  @remove="removeNote" />

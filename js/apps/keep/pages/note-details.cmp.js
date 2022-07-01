@@ -4,15 +4,46 @@ import imgDetails from "../cmps/img.details.cmp.js";
 export default {
     props:['note'],
  template: `
+ <section v-if="note">
+ <todo-details v-if="isTodo" :note="note"/>
+ <txt-details v-if="isText" :note="note"/>
+ <img-details v-if="isImg" :note="note"/>
+ </section>
  
 
 `,
+components:{
+    todoDetails,
+    txtDetails,
+    imgDetails,
+},
 data() {
 return {
+    isText:null,
+    isTodo:null,
+    isImg:null,
   
 };
 },
-created() {},
+created() {
+    if (this.note.type==='note-txt'){
+        this.isText=true
+        this.isTodo=false
+        this.isImg=false
+        
+    }
+    if(this.note.type==='note-todo'){
+        this.isTodo=true
+        this.isText=false
+        this.isImg=false
+    }
+    if (this.note.type==='note-img') {
+        this.isImg=true
+        this.isText=false
+        this.isTodo=false
+        
+    }
+},
 methods: {},
 computed: {},
 unmounted() {},

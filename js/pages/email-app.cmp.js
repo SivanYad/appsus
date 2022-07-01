@@ -21,7 +21,7 @@ export default {
     <router-view />
     </div>
  </section>
- </div>
+
 `,
     components: {
         emailFilter,

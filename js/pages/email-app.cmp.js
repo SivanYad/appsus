@@ -10,7 +10,7 @@ export default {
   template: `
  <section v-if="emails" class="emails-app-main flex">
     <div class="email-nav flex">
-    <email-nav/>
+    <email-nav @statusChanged="setStatus" />
     </div>
     <div>
     <email-filter @filtered="filterEmails" />
@@ -37,21 +37,26 @@ export default {
       emailId: null,
       isCompose: false,
       filterBy: null,
+      status: 'inbox' 
     }
   },
   created() {
-    emailService.query().then((emails) => (this.emails = emails))
+    let criteria = this.getCriteria()
+    console.log(criteria)
+    emailService.query(criteria).then((emails) => (this.emails = emails))
   },
   methods: {
     setCreateEmail(emailData) {
       emailData.sentAt = Date.now()
       emailData.isRead = false
       emailData.labels = []
+      emailData.status = 'sent'
       console.log(emailData)
       emailService
         .save(emailData)
         .then((email) => {
-          emailService.query().then((emails) => (this.emails = emails))
+        let criteria = this.getCriteria()
+          emailService.query(criteria).then((emails) => (this.emails = emails))
         })
         .catch((err) => {
           console.log(err)
@@ -62,10 +67,11 @@ export default {
       this.isMailClicked = true
       this.emailId = email.id
       email.isRead = true
+      let criteria = this.getCriteria()
       emailService
         .save(email)
         .then((email) => {
-          emailService.query().then((emails) => (this.emails = emails))
+          emailService.query(criteria).then((emails) => (this.emails = emails))
         })
         .catch((err) => {
           console.log(err)
@@ -89,6 +95,19 @@ export default {
     filterEmails(criteria) {
       this.filterBy = criteria
     },
+    setStatus(status) {
+        this.status = status
+        console.log(this.status)
+    },
+    getCriteria() {
+        let criteria;
+    if (this.filterBy) {
+         criteria = {...this.filterBy, status: this.status}
+    } else{
+        criteria = {status: this.status}
+    }
+    return criteria
+    },
   },
   computed: {
     emailsForDisplay() {
@@ -98,9 +117,11 @@ export default {
         const regex = new RegExp(this.filterBy.txtSearch, 'i')
         let emails = this.emails.filter(
             (email) => {
-                console.log(this.filterBy)
+                console.log(this.status)
                 return regex.test(email.body) &&
-                email.isRead === this.filterBy.isRead
+                email.isRead === this.filterBy.isRead &&
+                email.status === this.status
+                
             })
             console.log(emails)
             return emails

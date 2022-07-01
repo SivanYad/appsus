@@ -21,7 +21,7 @@ export default {
     <router-view />
     </div>
  </section>
- </div>
+ 
 `,
     components: {
         emailFilter,
@@ -57,7 +57,12 @@ export default {
             console.log("Selected email")
             this.isMailClicked = true
             this.emailId = email.id
-
+            email.isRead = true
+            emailService.save(email).then((email) => {
+                emailService.query().then(emails => this.emails = emails)
+            }).catch(err => {
+                console.log(err)
+            })
             router.push({ path: `/email/${this.emailId}` })
             // router.push({ name: 'email', params: { emailId: this.emailId} })
         },

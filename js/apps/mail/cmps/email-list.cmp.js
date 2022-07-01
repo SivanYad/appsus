@@ -26,6 +26,8 @@ methods: {
     }
     
 },
-computed: {},
+computed: {
+    
+},
 unmounted() {},
 }

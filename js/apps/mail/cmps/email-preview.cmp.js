@@ -22,14 +22,14 @@ export default {
     },
   },
   unmounted() {},
-  watch: {
-    email: {
-        handler() {
-            const id = this.email.id
-            const email =   emailService.get(id).then(email =>  {this.email = email})
-            return email
-        },
-        deep: true
-    }
-  },
+//   watch: {
+//     email: {
+//         handler() {
+//             const id = this.email.id
+//             const email =   emailService.get(id).then(email =>  {this.email = email})
+//             return email
+//         },
+//         deep: true
+//     }
+//   },
 }

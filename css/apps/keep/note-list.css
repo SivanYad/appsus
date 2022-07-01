@@ -22,3 +22,6 @@ article.note {
     width: 100%;
 }
 
+.note img{
+    height: 150px;
+}

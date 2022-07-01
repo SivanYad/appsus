@@ -4,7 +4,7 @@ export default {
     <section><div v-if="create" class="create-container">
         <input type="text" @click="noteTypeText" placeholder="Write A Text Note">
         <label for="upload-photo">img</label>
-        <input type="file" id="upload-photo" @change="uploadImage($event)" accept="image/jpeg, image/png, image/jpg"> 
+        <input type="file" id="upload-photo" @change="uploadImage($event)" @click="noteTypeImg" accept="image/jpeg, image/png, image/jpg"> 
         <button @click="noteTodoText">List</button>
         </div>
         <div v-if="isText">
@@ -22,9 +22,9 @@ export default {
             <button>close</button>
             </form>
         </div>
-        <div v-if="isImg">
+        <div v-if="isImg" class="note">
             <form @submit.prevent="createNoteTypeImg">
-            <img src="previewImage">
+            <img v-if="previewImage" :src="previewImage">
             <input type="text">
             </form>
             
@@ -56,7 +56,7 @@ props:['notes'],
             this.isText = true
             this.create = null
         },
-        notetypeImg() {
+        noteTypeImg() {
             this.isImg = true
             this.create = null
         },
@@ -71,15 +71,31 @@ props:['notes'],
             }
             const newNote=notesService.createNote('note-txt',noteInfo)
             this.notes.push(newNote)
+            this.create=true
+            this.isText=false
+            this.txtData={
+                label:'',
+                txt:''
+            }
         
         },
         createNoteTypeTodo(){
+            this.todoList.splice(this.todoList.length-1,1)
             const noteInfo={
                 label:this.todoData.label,
                 todos:this.todoList
             }
             const newNote=notesService.createNote('note-todos',noteInfo)
             this.notes.push(newNote)
+            this.create=true
+            this.isTodo=false
+            this.todoList=[{txt:''}]
+            this.todoData= {label:''}
+
+        },
+        createNoteTypeImg(){
+        
+
         },
         addTodo(idx){
           if(idx===this.todoList.length-1){
@@ -90,15 +106,8 @@ props:['notes'],
 
         uploadImage(event) {
             console.log(event);
-            this.file = event.target.files[0]
-            const formData = new FormData();
-            formData.append('img', this.file, this.file.name)
-            fetch('//ca-upload.com/here/upload.php', {
-                method: 'POST',
-                body: formData
-            }).then(res => res.text()).then((url) => {
-                this.previewImage = url
-            })
+            const file= event.target.files[0]
+            this.previewImage = URL.createObjectURL(file);
         }
     },
 

@@ -1,27 +1,29 @@
 export default {
-    props:['note'],
- template: `
- <form @submit.prevent="updateNoteTypeText">
-            <input type="text" :value="note.label">
-            <input type="text" value="note.txt" >
+    props: ['note'],
+    template: `
+    <section>
+    <form @submit.prevent="updateNoteTypeText">
+            <input type="text" v-model="note.info.label">
+            <input type="text" v-model="note.info.txt" >
             <button>close</button>
             </form>
-`,
-data() {
-return {
-    txtData:{
-        label:'',
-        txt:''
-    }
-};
-},
-created() {},
-methods: {
-    updateNoteTypeText(){
+    </section>
+    `,
+    data() {
+        return {
+            txtData: {
+                label: '',
+                txt: ''
+            }
+        };
+    },
+    created() { },
+    methods: {
+        updateNoteTypeText() {
 
 
-    }
-},
-computed: {},
-unmounted() {},
+        }
+    },
+    computed: {},
+    unmounted() { },
 };

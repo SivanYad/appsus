@@ -12,7 +12,7 @@ export default {
                   :info="note.info" :note="note"> 
                 </component>
                 <button @click.stop="remove(note.id)">🗑</button>
-                <input id="color-input" type="color" class="color-input"  v-model="note.style.backgroundColor" @change.stop="changeColor(note)" >
+                <input id="color-input" type="color" @click.stop class="color-input"  v-model="note.style.backgroundColor" @change.stop="changeColor(note)" >
                 </article>
             </section>
 `,

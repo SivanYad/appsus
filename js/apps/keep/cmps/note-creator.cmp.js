@@ -25,7 +25,8 @@ export default {
         <div v-if="isImg" class="note">
             <form @submit.prevent="createNoteTypeImg">
             <img v-if="previewImage" :src="previewImage">
-            <input type="text">
+            <input type="text" v-model="imgTitle">
+            <button>close</button>
             </form>
             
         </div>
@@ -47,7 +48,8 @@ props:['notes'],
             todoData:{
                 label:'',
             },
-            todoList:[{txt:''}]
+            todoList:[{txt:'',doneAt:null}],
+            imgTitle:''
         };
     },
     created() { },
@@ -84,6 +86,7 @@ props:['notes'],
             const noteInfo={
                 label:this.todoData.label,
                 todos:this.todoList
+
             }
             const newNote=notesService.createNote('note-todos',noteInfo)
             this.notes.push(newNote)
@@ -93,22 +96,32 @@ props:['notes'],
             this.todoData= {label:''}
 
         },
+        uploadImage(event) {
+            console.log(event);
+            const file= event.target.files[0]
+            this.previewImage = URL.createObjectURL(file);
+        },
         createNoteTypeImg(){
+            const noteInfo={
+                url:this.previewImage,
+                title:this.imgTitle
+            }
+            const newNote=notesService.createNote('note-img',noteInfo)
+            this.notes.push(newNote)
+            this.create=true
+            this.isImg=false
+            this.imgTitle=''
+            this.previewImage=null
         
 
         },
         addTodo(idx){
           if(idx===this.todoList.length-1){
-            this.todoList.push({txt:''})
+            this.todoList.push({txt:'',doneAt:null})
           }
         },
 
 
-        uploadImage(event) {
-            console.log(event);
-            const file= event.target.files[0]
-            this.previewImage = URL.createObjectURL(file);
-        }
     },
 
     computed: {

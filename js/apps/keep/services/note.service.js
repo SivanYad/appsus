@@ -1,5 +1,5 @@
-import {utilService} from '../../../services/util-service.js'
-import {storageServices} from '../../../services/async-storage-service.js'
+import { utilService } from '../../../services/util-service.js'
+import { storageServices } from '../../../services/async-storage-service.js'
 export const notesService = {
     query,
     remove,
@@ -9,7 +9,7 @@ export const notesService = {
 const NOTES_KEY = 'notesDB'
 _createNotes()
 function query() {
-    return storageServices.query(NOTES_KEY).then(notes=>{
+    return storageServices.query(NOTES_KEY).then(notes => {
         return notes
     })
 }
@@ -23,16 +23,16 @@ function save(note) {
 }
 
 function _createNotes() {
-   const notes= [{
+    const notes = [{
         id: "n101",
         type: "note-txt",
         isPinned: true,
         info: {
-            label:'',
+            label: '',
             txt: "Fullstack Me Baby!"
         },
         style: {
-            backgroundColor: "#ffff"
+            backgroundColor: "#9097FE"
         }
     },
     {
@@ -43,7 +43,7 @@ function _createNotes() {
             title: "Me and Everyone here"
         },
         style: {
-            backgroundColor: "#00d"
+            backgroundColor: "#ADF1FF"
         }
     },
     {
@@ -57,30 +57,44 @@ function _createNotes() {
             ]
         },
         style: {
-            backgroundColor: "#ffff"
+            backgroundColor: "#FFF5B3"
         }
     },
     {
-        id:"n104",
-        style: {
-            backgroundColor: "#ffff"
-        }
+        id: "n104",
+        type: "note-todos",
+        info: {
+            label: "Thing to do after sprint",
+            todos: [
+                { txt: "Sleep", doneAt: null },
+                { txt: "Sleep", doneAt: null },
+                { txt: "Sleep", doneAt: null },
+                { txt: "And more sleep", doneAt: null },
+            ]
+
+        },
+style: {
+    backgroundColor: "#FFB8F5"
+}
 
     }
     ]
-    let notesFromStorage = utilService.loadFromStorage(NOTES_KEY);
-    if (!notesFromStorage || !notesFromStorage.length) {
+let notesFromStorage = utilService.loadFromStorage(NOTES_KEY);
+if (!notesFromStorage || !notesFromStorage.length) {
 
-        utilService.saveToStorage(NOTES_KEY,notes)
-    }
-    return notes
+    utilService.saveToStorage(NOTES_KEY, notes)
+}
+return notes
 
 }
 
-function createNote(noteType,noteInfo){
-    const note={
+function createNote(noteType, noteInfo) {
+    const note = {
         type: noteType,
-        info: noteInfo
+        info: noteInfo,
+        style: {
+            backgroundColor: "#ffffff"
+        }
     }
     save(note)
     return note

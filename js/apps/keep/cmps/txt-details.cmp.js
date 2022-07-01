@@ -1,3 +1,4 @@
+import { notesService } from "../services/note.service.js";
 export default {
     props: ['note'],
     template: `
@@ -20,7 +21,8 @@ export default {
     created() { },
     methods: {
         updateNoteTypeText() {
-
+           notesService.save(this.note)
+           
 
         }
     },

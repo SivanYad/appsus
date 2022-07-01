@@ -2,20 +2,17 @@ import notePreview from "./note-preview.cmp.js";
 import noteTxt from "./note-txt.cmp.js";
 import noteImg from "./note-img.cmp.js";
 import noteTodos from "./note-todos.cmp.js";
-import noteBgColor from "./note-bg-color.cmp.js";
 import { notesService } from "../services/note.service.js";
 export default {
     props: ["notes"],
     template: `
       <section class="note-list-container">
-              <article class="note" @click.self v-for="(note,idx) in notes" :key="note.id"  @click="select(note)">
+              <article class="note" @click.self v-for="(note,idx) in notes" :key="note.id" :style="note.style" @click="select(note)">
                   <component :is="note.type"  
-                  :info="note.info" >
+                  :info="note.info" :note="note"> 
                 </component>
                 <button @click.stop="remove(note.id)">🗑</button>
-                <button @click.stop=""><input type="color"></button>
-                
-                    
+                <input id="color-input" type="color" class="color-input"  v-model="note.style.backgroundColor" @change.stop="changeColor(note)" >
                 </article>
             </section>
 `,
@@ -24,11 +21,13 @@ export default {
         noteTxt,
         noteImg,
         noteTodos,
-        noteBgColor
+        
     },
     data() {
         return {
-            showColorModal: false
+            showColorModal: false,
+            
+
         };
     },
     created() { },
@@ -39,6 +38,9 @@ export default {
       
         select(note){
             this.$emit('selected',note)
+        },
+        changeColor(note){
+            notesService.save(note)
         }
 
     },

@@ -36,7 +36,7 @@ const gEmails = [{
 const EMAIL_KEY = 'email';
 _createEmails()
 
-function query() {
+function query(criteria = {txt: ''}) {
     return storageServices.query(EMAIL_KEY).then(emails => {
         // if (!emails || !emails.length) {
         //     emails = _createEmails()

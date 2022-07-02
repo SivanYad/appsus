@@ -1,4 +1,49 @@
-.emails-app-main{
+.emails-app-main {
     flex-direction: row;
+    color: var(--clr2);
+    height: 100%;
+    position: fixed;
+    z-index: 1;
+    top:80px;
+    left: 0;
+}
+
+.filter-container input:focus {
+    outline: none;
+    border: none;
+
+}
+.filter-container input{
+    border: none;
+    background: #f1f3f4;
+    width: inherit;
+
+
+}
+.filter-container form{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-self: center;
+    /* background-color: aqua; */
+}
+.search-email{
+    background: #f1f3f4;
+    padding: 15px;
+    border-radius: 15px;
+    width: 400px;
    
+}
+.filter-container::after{
+    background: #ffffff;
+}
+.search-btn{
+    background: none;
+    border: none;
+}
+
+.filter-btn li{
+    padding-left: 10px;
+    padding-right: 10px;
+align-self: center;
 }

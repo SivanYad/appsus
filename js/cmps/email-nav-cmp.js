@@ -4,7 +4,7 @@ export default {
  <a ref="sent" @click="changeStatus" >Sent</a>
  <a ref="star" @click="changeStatus">Starred</a>
  <a ref="trash" @click="changeStatus">Trash</a> -->
- <ul>
+ <ul class="clean-list">
     <li>
         <label>Inbox<input type="radio" v-model="status" value="inbox" @change="changeStatus"></label>
     </li>

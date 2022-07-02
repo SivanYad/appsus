@@ -11,7 +11,7 @@ article.note {
     padding: 1em;
     border-radius: 1rem;
     border: 1px solid rgba(171, 169, 169, 0.672);
-    margin: 5px
+    margin: 5px;
 }
 
 .note-list-container {
@@ -40,19 +40,15 @@ article.note {
 
 }
 input[type="color"]{
-    
-        appearance: none;
-        background: none;
-        border-radius: 50%;
-        height: 20px;
-        width: 20px;
-        border: 2px solid rgb(255, 255, 255);
-        padding: 0;
-        fill-opacity: 0;
-   
+    display: none;
 }
 
 img{
     height: 150px;
 }
+
+button.remove,button.pin,button.copy{
+    background: none;
+    border: 0;
+} 
 

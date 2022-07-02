@@ -1,12 +1,13 @@
 import { notesService } from "../services/note.service.js";
 export default {
-    props:['note'],
+    props:['note','isImg'],
  template: `
  <section v-if="note">
-    <form @submit.prevent="updateNoteTypeImg"></form>
+    <form @submit.prevent="updateNoteTypeImg">
     <img :src="note.info.url" alt="">
-    <input type="text" v-model="note.info.title">
+    <input type="text" v-model="note.info.label">
     <button>close</button>
+    </form>
  </section>
 `,
 data() {
@@ -16,7 +17,8 @@ created() {},
 methods: {
     updateNoteTypeImg(){
         notesService.save(this.note)
-        this.note=null
+        this.$emit('done',this.isImg)
+        
     }
 },
 computed: {},

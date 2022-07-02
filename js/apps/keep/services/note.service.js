@@ -8,10 +8,28 @@ export const notesService = {
 }
 const NOTES_KEY = 'notesDB'
 _createNotes()
-function query() {
-    return storageServices.query(NOTES_KEY).then(notes => {
+function query(criteria) {
+    if (criteria==={}) {
+        return storageServices.query(NOTES_KEY).then(notes=>{
+            return notes
+        })
+        
+    }
+    return storageServices.query(NOTES_KEY).then((notes) => {
+        const regex = new RegExp(criteria.text, 'i')
+        if (criteria.type === 'notes') {
+            notes = notes.filter(note => {
+                return regex.test(note.info.label)
+            })
+        } else {
+            notes = notes.filter(note => {
+                return regex.test(note.info.label) &&
+                    criteria.type === note.type
+            })
+        }
         return notes
     })
+
 }
 
 function remove(noteId) {
@@ -40,7 +58,7 @@ function _createNotes() {
         type: "note-img",
         info: {
             url: "../../../imgs/img1.png",
-            title: "Me and Everyone here"
+            label: "Me and Everyone here"
         },
         style: {
             backgroundColor: "#ADF1FF"
@@ -73,18 +91,18 @@ function _createNotes() {
             ]
 
         },
-style: {
-    backgroundColor: "#FFB8F5"
-}
+        style: {
+            backgroundColor: "#FFB8F5"
+        }
 
     }
     ]
-let notesFromStorage = utilService.loadFromStorage(NOTES_KEY);
-if (!notesFromStorage || !notesFromStorage.length) {
+    let notesFromStorage = utilService.loadFromStorage(NOTES_KEY);
+    if (!notesFromStorage || !notesFromStorage.length) {
 
-    utilService.saveToStorage(NOTES_KEY, notes)
-}
-return notes
+        utilService.saveToStorage(NOTES_KEY, notes)
+    }
+    return notes
 
 }
 

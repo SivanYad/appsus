@@ -5,12 +5,10 @@ export default {
     props: ['note'],
     template: `
  <section v-if="note">
- <todo-details v-if="isTodo" :note="note"/>
- <txt-details v-if="isText" :note="note"/>
- <img-details v-if="isImg" :note="note"/>
+ <todo-details v-if="isTodo"  :note="note"/>
+ <txt-details v-if="isText" @done="doneTextUpdate" :isText="isText" :note="note"/>
+ <img-details v-if="isImg" @done="doneImgUpdate" :isImg="isImg" :note="note"/>
  </section>`
-
-
     ,
     components: {
         todoDetails,
@@ -66,6 +64,16 @@ export default {
 
     },
     methods: {
+        doneTextUpdate(isText){
+            isText=false
+            this.isText=false
+           this.$emit('doneUpdate',this.note)
+        },
+        doneImgUpdate(isImg){
+            isImg=false
+            this.isImg=false
+           this.$emit('doneUpdate',this.note)
+        }
         
     },
     computed: {},

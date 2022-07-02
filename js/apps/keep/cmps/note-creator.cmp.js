@@ -104,7 +104,7 @@ props:['notes'],
         createNoteTypeImg(){
             const noteInfo={
                 url:this.previewImage,
-                title:this.imgTitle
+                label:this.imgTitle
             }
             const newNote=notesService.createNote('note-img',noteInfo)
             this.notes.push(newNote)

@@ -7,12 +7,15 @@ export default {
     props: ["notes"],
     template: `
       <section class="note-list-container">
-              <article class="note" @click.self v-for="(note,idx) in notes" :key="note.id" :style="note.style" @click="select(note)">
+              <article class="note" @click.self v-for="(note,idx) in notes" :style="note.style" @click="select(note)">
                   <component :is="note.type"  
                   :info="note.info" :note="note"> 
                 </component>
-                <button @click.stop="remove(note.id)">🗑</button>
-                <input id="color-input" type="color" @click.stop class="color-input"  v-model="note.style.backgroundColor" @change.stop="changeColor(note)" >
+                <button class="remove" @click.stop="remove(note.id)"><i class="fa-solid fa-trash"></i></button>
+                <label :for="note.id" @click.stop><i class="fas fa-palette"></i></label>
+                <input :id="note.id" type="color" @click.stop class="color-input"  v-model="note.style.backgroundColor" @change.stop="changeColor(note)" >
+                <button class="pin"><i class="fas fa-thumbtack"></i></button>
+                <button class="copy" @click.stop="copyNote(note)"><i class="fas fa-copy"></i></button>
                 </article>
             </section>
 `,
@@ -41,6 +44,10 @@ export default {
         },
         changeColor(note){
             notesService.save(note)
+
+        },
+        copyNote(note){
+            this.$emit('copyed',note)
         }
 
     },

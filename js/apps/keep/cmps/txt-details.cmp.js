@@ -1,6 +1,6 @@
 import { notesService } from "../services/note.service.js";
 export default {
-    props: ['note'],
+    props: ['note','isText'],
     template: `
     <section>
     <form @submit.prevent="updateNoteTypeText">
@@ -22,7 +22,9 @@ export default {
     methods: {
         updateNoteTypeText() {
            notesService.save(this.note)
-           
+           this.$emit('done',this.isText)
+          
+
 
         }
     },

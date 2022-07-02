@@ -5,15 +5,17 @@ import notePreview from "../apps/keep/cmps/note-preview.cmp.js";
 import { eventBus } from "../services/eventBus-service.js"
 import noteCreator from "../apps/keep/cmps/note-creator.cmp.js";
 import noteDetails from "../apps/keep/pages/note-details.cmp.js";
+import {utilService} from "../services/util-service.js"
 import { router } from "../router.js";
 export default {
     template: `
  <section v-if="notes">
+     <note-filter @filtered="setFilter" :notes="notes"/>
      <note-creator :notes="notes"/>
-     <note-details v-if="selectedNote" :note="selectedNote"/>
+     <note-details v-if="selectedNote" @doneUpdate="unSelect"  :note="selectedNote"/>
      <!-- <router-view/> -->
-     <note-Filter @filtered="setFilter" :notes="notes"/>
-     <note-List :notes="notes"  @selected="selectNote"  @remove="removeNote" />
+     <note-List :notes="notes"  @selected="selectNote"
+     @copyed="copyNote"  @remove="removeNote" />
     </section>
 `,
     components: {
@@ -23,25 +25,38 @@ export default {
         noteCreator,
         noteDetails,
     },
+    watch: {
+        filterBy: {
+            handler(newVal, oldVal) {
+                const notes = notesService.query(this.filterBy).then(notes => {
+                    this.notes = notes
+                    return notes
+                })
+
+            },
+            deep: true
+        }
+    },
     data() {
         return {
             notes: null,
-            filterBy: null,
+            filterBy: {},
             selectedNote: null,
-            noteId:null
+            noteId: null
         };
     },
     created() {
-        notesService.query().then(notes => this.notes = notes)
+        notesService.query(this.filterBy).then(notes => this.notes = notes)
     },
     methods: {
         setFilter(filterBy) {
+            // console.log(this.filterBy);
             this.filterBy = filterBy
         },
         selectNote(note) {
             console.log(note);
             this.selectedNote = note
-            this.noteId=note.id
+            this.noteId = note.id
             // router.push({ path: `/keep/${this.noteId}` })
         },
         removeNote(id) {
@@ -55,6 +70,18 @@ export default {
                 eventBus.emit('show-msg', { txt: 'Error - try again later', type: 'error' });
             })
         },
+        copyNote(note) {
+            const newNote = JSON.parse(JSON.stringify(note))
+            newNote.id = utilService.makeId()
+            notesService.save(newNote)
+            this.notes.push(newNote)
+
+        },
+        unSelect(note) {
+            note = false
+            this.selectedNote = note
+
+        }
     },
     computed: {
 

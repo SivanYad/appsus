@@ -18,26 +18,30 @@ _createEmails()
 
 
 
+
 function query(criteria) {
 
+
   return storageServices.query(EMAIL_KEY).then((emails) => {
-    console.log(criteria)
-    if (!criteria.txtSearch) {
-        emails = emails.filter((email) => email.status === criteria.status)
-        // console.log(emails)
-    } else{
+ 
         const regex = new RegExp(criteria.txtSearch, 'i')
         emails = emails.filter((email) =>{
-            // console.log(emails)
+            if(criteria.isRead === undefined) {
+            return regex.test(email.body) && email.status === criteria.status
+                
+            } else {
+                console.log(criteria)
             return regex.test(email.body) &&
-            email.isRead === criteria.isRead &&
+            email.isRead.toString() === criteria.isRead &&
             email.status === criteria.status
+            }
+            
         
         })
-    }
-    return emails
-  })
-}
+        return emails
+    })
+  }
+// }
 
 function changeArray(email, newArr) {
     console.log(gVars.gEmails)

@@ -6,10 +6,10 @@ export default {
         
         <ul class="clean-list flex filter-btn">
             <li>
-                <label for="read">Read<input type="radio" :value="true" ref="filter1" id="read"  v-model="criteria.isRead" @click="filter" /></label>
+                <label for="read">Read<input type="radio" value="true" ref="filter1" id="read"  v-model="criteria.isRead" @click="filter($event)" /></label>
             </li>
             <li>
-                <label for="unread">Unread<input type="radio" id="unread" :value="false" ref="filter2" v-model="criteria.isRead" @click="filter" /></label>
+                <label for="unread">Unread<input type="radio" id="unread" value="false" ref="filter2" v-model="criteria.isRead" @click="filter($event)" /></label>
             </li> 
         </ul>
         <!-- <label>Read Emails<input
@@ -36,17 +36,17 @@ export default {
       console.log(typeof this.criteria.isRead)
     //   this.$emit()
     },
-    filter() {
-      let read = this.$refs.filter1
-      let unread = this.$refs.filter2
-      if(read.checked) {
+    filter(event) {
+   
+      console.log(event.target._value)
+    if (event.target._value === "true")  {
         this.criteria.isRead = true
-      } else {
+    } else {
         this.criteria.isRead = false
-      }
-    
+    } 
       this.$emit('filtered', this.criteria)
     },
+
   },
   computed: {},
   unmounted() {},

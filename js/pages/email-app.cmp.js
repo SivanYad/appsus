@@ -10,7 +10,7 @@ export default {
   template: `
  <section v-if="emails" class="emails-app-main flex">
    <div class="email-nav flex">
-     <button class="create-email-btn" @click="isCompose = !isCompose">New Email <i class="fas fa-plus"></i></button>
+     <button class="create-email-btn" @click="isCompose = true">New Email <i class="fas fa-plus"></i></button>
      <email-nav @statusChanged="setStatus" />
     </div>
     <div class="email-container">
@@ -41,12 +41,14 @@ export default {
   },
   created() {
     let criteria = this.getCriteria()
-    console.log(criteria)
+    console.log(this.isCompose)
+
     // console.log('Emails start', this.emails)
     emailService.query(criteria).then((emails) => (this.emails = emails))
   },
   methods: {
     setCreateEmail(emailData) {
+        this.isCompose = false
       emailData.sentAt = Date.now()
       emailData.isRead = false
       emailData.labels = []
@@ -80,20 +82,17 @@ export default {
       // router.push({ name: 'email', params: { emailId: this.emailId} })
     },
     removeEmail(id) {
-        // console.log('remove')
-        const criteria = this.getCriteria()
-        const idx = this.emails.findIndex((email) => email.id === id)
-        const email = this.emails[idx]
+      // console.log('remove')
+      const criteria = this.getCriteria()
+      const idx = this.emails.findIndex((email) => email.id === id)
+      const email = this.emails[idx]
       if (email.status !== 'trash') {
         email.status = 'trash'
         this.emails.splice(idx, 1)
         this.isMailClicked = false
-        emailService
-        .save(email)
-            .then((email) => {
-                emailService.query(criteria).then((emails) => (this.emails = emails))
-            })
-
+        emailService.save(email).then((email) => {
+          emailService.query(criteria).then((emails) => (this.emails = emails))
+        })
       } else {
         console.log('else')
         emailService
@@ -110,8 +109,9 @@ export default {
       }
     },
     filterEmails(criteria) {
+      // console.log('clicked')
       this.filterBy = criteria
-      console.log(this.filterBy)
+    //   console.log('THIS IS FILTER IN THE APP', this.filterBy)
     },
     setStatus(status) {
       this.status = status
@@ -128,36 +128,17 @@ export default {
     },
   },
   computed: {
-    // emailsForDisplay() {
-    //     let criteria = this.getCriteria()
-    //     emailService.query(criteria).then((emails) => (this.emails = emails))
-    //     // console.log(this.emails)
-    //     return this.emails
-    // return this.emails
-    //   if (!this.filterBy) {
-    //     return this.emails
-    //   } else {
-    //     const regex = new RegExp(this.filterBy.txtSearch, 'i')
-    //     let emails = this.emails.filter(
-    //         (email) => {
-    //             return regex.test(email.body) &&
-    //             email.isRead === this.filterBy.isRead
-    //         })
-    //         console.log(emails)
-    //         return emails
-    //   }
-    // },
-    // showEmailDetails() {
-    //     return this.em
-    // }
+   
   },
   watch: {
     filterBy: {
       handler() {
         let criteria = this.getCriteria()
+        // console.log('app watch!!!', criteria)
         const emails = emailService
           .query(criteria)
           .then((emails) => (this.emails = emails))
+        // console.log('print criteria', criteria)
         return emails
       },
       deep: true,
@@ -172,6 +153,13 @@ export default {
       },
       deep: true,
     },
+    isCompose: {
+      handler(newVal) {
+        this.isCompose = newVal
+        console.log(this.isCompose)
+      },
+      deep: true,
+    },
+    unmounted() {},
   },
-  unmounted() {},
 }

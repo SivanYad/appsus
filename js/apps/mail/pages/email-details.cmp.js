@@ -1,5 +1,6 @@
 import { emailService } from '../services/email.services.js';
 import longText from '../../../cmps/long-text.cmp.js';
+import { eventBus } from '../../../services/eventBus-service.js';
 
 
 
@@ -14,6 +15,7 @@ export default {
     <p>To: {{this.email.to}}</p>
     <router-link to="/email">Back to list</router-link>
     <button @click="remove(email.id)">Delete Email</button>
+    <button @click="createNote">Create Note</button>
  </section>
 `,
 data() {
@@ -38,8 +40,10 @@ methods: {
         remove(id){
             this.$emit('remove', id)
 
-        }
-    ,
+        },
+        createNote() {
+
+        },
     
 },
 computed: {

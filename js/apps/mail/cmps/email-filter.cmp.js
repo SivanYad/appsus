@@ -1,34 +1,53 @@
 export default {
- template: `
+  template: `
  <section class="filter-container">
-    <form>
-        <label>Search Email<input type="text" v-model="criteria.txtSearch"></label>
-        <select value="true" >Read</select>
-        <select value="false">Unread</select>
-        <button >Check</button>
+    <form @submit.prevent="submit">
+        <label>Search Email<input type="text" v-model="criteria.txtSearch" @input="filter"></label>
+        <ul class="clean-list">
+            <li>
+                <label>Read<input type="radio" :value="true" ref="filter1"  v-model="criteria.isRead" @click="filter" /></label>
+            </li>
+            <li>
+                <label>Unread<input type="radio" :value="false" ref="filter2" v-model="criteria.isRead" @click="filter" /></label>
+            </li>
+        </ul>
+        <!-- <label>Read Emails<input
+            type="checkbox"
+            v-model="criteria.isRead"
+            true-value="yes"
+            false-value="no" />
+        </label> -->
+        <button>Submit</button>
     </form>
  </section>
 `,
-data() {
-return {
-    criteria: {
-        txtSearch: null,
-        isRead: null
+  data() {
+    return {
+      criteria: {
+        txtSearch: '',
+        isRead: false,
+      },
     }
-}
-},
-created() {},
-methods: {
-    search() {
-        console.log(this.criteria)
+  },
+  created() {},
+  methods: {
+    submit() {
+      console.log(this.criteria)
+      console.log(typeof this.criteria.isRead)
+    //   this.$emit()
     },
-    // onSetRead() {
-    //     this.isRead = true
-    // },
-    // onSetUnread() {
-    //     this.isRead = false
-    // },
-},
-computed: {},
-unmounted() {},
+    filter() {
+      let read = this.$refs.filter1
+      let unread = this.$refs.filter2
+      if(read.checked) {
+        this.criteria.isRead = true
+      } else {
+        this.criteria.isRead = false
+      }
+    
+      this.$emit('filtered', this.criteria)
+    },
+  },
+  computed: {},
+  unmounted() {},
 }

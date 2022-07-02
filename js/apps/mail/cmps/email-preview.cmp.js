@@ -1,13 +1,17 @@
 import { emailService } from '../services/email.services.js';
+import longText from '../../../cmps/long-text.cmp.js';
 
 export default {
   props: ['email'],
   template: `
  <section class="email-preview">
     <h4 :class="titleStyle">{{ email.subject }}</h4>
-    <p> {{email.body}} </p>
+    <long-text :text="email.body" />
  </section>
 `,
+components: {
+    longText,
+},
   data() {
     return {}
   },
@@ -22,14 +26,14 @@ export default {
     },
   },
   unmounted() {},
-  watch: {
-    email: {
-        handler() {
-            const id = this.email.id
-            const email =   emailService.get(id).then(email =>  {this.email = email})
-            return email
-        },
-        deep: true
-    }
-  },
+//   watch: {
+//     email: {
+//         handler() {
+//             const id = this.email.id
+//             const email =   emailService.get(id).then(email =>  {this.email = email})
+//             return email
+//         },
+//         deep: true
+//     }
+//   },
 }

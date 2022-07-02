@@ -2,10 +2,12 @@ import { notesService } from "../services/note.service.js";
 export default {
     template: `
     <section><div v-if="create" class="create-container">
-        <input type="text" @click="noteTypeText" placeholder="Write A Text Note">
-        <label for="upload-photo">img</label>
+        <input class="create-txt-note" type="text" @click="noteTypeText" placeholder="Write A Text Note">
+        <label class="file" for="upload-photo"><i class="fa-regular fa-image"></i></label>
+        <div>
         <input type="file" id="upload-photo" @change="uploadImage($event)" @click="noteTypeImg" accept="image/jpeg, image/png, image/jpg"> 
-        <button @click="noteTodoText">List</button>
+        <button class="list" @click="noteTodoText"><i class="fa-solid fa-list"></i></button>
+        </div>
         </div>
         <div v-if="isText">
             <form @submit.prevent="createNoteTypeText">
@@ -32,7 +34,7 @@ export default {
         </div>
     </section>
 `,
-props:['notes'],
+    props: ['notes'],
     data() {
         return {
             isText: null,
@@ -41,15 +43,15 @@ props:['notes'],
             previewImage: null,
             file: null,
             create: true,
-            txtData:{
-                label:'',
-                txt:''
+            txtData: {
+                label: '',
+                txt: ''
             },
-            todoData:{
-                label:'',
+            todoData: {
+                label: '',
             },
-            todoList:[{txt:'',doneAt:null}],
-            imgTitle:''
+            todoList: [{ txt: '', doneAt: null }],
+            imgTitle: ''
         };
     },
     created() { },
@@ -66,59 +68,59 @@ props:['notes'],
             this.isTodo = true
             this.create = null
         },
-        createNoteTypeText(){
-            const noteInfo={
+        createNoteTypeText() {
+            const noteInfo = {
                 label: this.txtData.label,
-                txt:this.txtData.txt
+                txt: this.txtData.txt
             }
-            const newNote=notesService.createNote('note-txt',noteInfo)
+            const newNote = notesService.createNote('note-txt', noteInfo)
             this.notes.push(newNote)
-            this.create=true
-            this.isText=false
-            this.txtData={
-                label:'',
-                txt:''
+            this.create = true
+            this.isText = false
+            this.txtData = {
+                label: '',
+                txt: ''
             }
-        
+
         },
-        createNoteTypeTodo(){
-            this.todoList.splice(this.todoList.length-1,1)
-            const noteInfo={
-                label:this.todoData.label,
-                todos:this.todoList
+        createNoteTypeTodo() {
+            this.todoList.splice(this.todoList.length - 1, 1)
+            const noteInfo = {
+                label: this.todoData.label,
+                todos: this.todoList
 
             }
-            const newNote=notesService.createNote('note-todos',noteInfo)
+            const newNote = notesService.createNote('note-todos', noteInfo)
             this.notes.push(newNote)
-            this.create=true
-            this.isTodo=false
-            this.todoList=[{txt:''}]
-            this.todoData= {label:''}
+            this.create = true
+            this.isTodo = false
+            this.todoList = [{ txt: '' }]
+            this.todoData = { label: '' }
 
         },
         uploadImage(event) {
             console.log(event);
-            const file= event.target.files[0]
+            const file = event.target.files[0]
             this.previewImage = URL.createObjectURL(file);
         },
-        createNoteTypeImg(){
-            const noteInfo={
-                url:this.previewImage,
-                label:this.imgTitle
+        createNoteTypeImg() {
+            const noteInfo = {
+                url: this.previewImage,
+                label: this.imgTitle
             }
-            const newNote=notesService.createNote('note-img',noteInfo)
+            const newNote = notesService.createNote('note-img', noteInfo)
             this.notes.push(newNote)
-            this.create=true
-            this.isImg=false
-            this.imgTitle=''
-            this.previewImage=null
-        
+            this.create = true
+            this.isImg = false
+            this.imgTitle = ''
+            this.previewImage = null
+
 
         },
-        addTodo(idx){
-          if(idx===this.todoList.length-1){
-            this.todoList.push({txt:'',doneAt:null})
-          }
+        addTodo(idx) {
+            if (idx === this.todoList.length - 1) {
+                this.todoList.push({ txt: '', doneAt: null })
+            }
         },
 
 

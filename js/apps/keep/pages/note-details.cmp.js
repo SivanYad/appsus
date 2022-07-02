@@ -5,7 +5,7 @@ export default {
     props: ['note'],
     template: `
  <section v-if="note">
- <todo-details v-if="isTodo"  :note="note"/>
+ <todo-details v-if="isTodo" :isTodo="isTodo" @done="doneTodoUpdate" :note="note"/>
  <txt-details v-if="isText" @done="doneTextUpdate" :isText="isText" :note="note"/>
  <img-details v-if="isImg" @done="doneImgUpdate" :isImg="isImg" :note="note"/>
  </section>`
@@ -73,6 +73,11 @@ export default {
             isImg=false
             this.isImg=false
            this.$emit('doneUpdate',this.note)
+        },
+        doneTodoUpdate(isTodo){
+            isTodo=false
+            this.isTodo=false
+            this.$emit('doneUpdate',this.note)
         }
         
     },

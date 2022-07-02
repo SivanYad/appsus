@@ -11,6 +11,7 @@
 @import "basic/vars.css";
 @import "apps/home-page.css";
 @import "apps/mail/email.compose.css";
+@import "apps/keep/note-filter.css";
 /* email preview class */
 
 

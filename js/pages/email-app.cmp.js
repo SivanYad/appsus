@@ -9,16 +9,16 @@ import emailNav from '../cmps/email-nav-cmp.js'
 export default {
   template: `
  <section v-if="emails" class="emails-app-main flex">
-    <div class="email-nav flex">
-    <email-nav @statusChanged="setStatus" />
+   <div class="email-nav flex">
+     <button class="create-email-btn" @click="isCompose = !isCompose">New Email <i class="fas fa-plus"></i></button>
+     <email-nav @statusChanged="setStatus" />
     </div>
     <div>
-    <email-filter @filtered="filterEmails" />
-    <email-list  :emails="emails"  @selected="selectEmail" />
-    <button @click="isCompose = !isCompose">Write Email</button>
-    <email-compose v-if="isCompose" @created="setCreateEmail" />
-    <email-details v-if="isMailClicked"  :emailId="emailId" @remove="removeEmail" />
-    <router-view />
+      <email-filter @filtered="filterEmails" />
+      <email-compose v-if="isCompose" @created="setCreateEmail" />
+      <email-list  :emails="emails"  @selected="selectEmail" />
+      <email-details v-if="isMailClicked"  :emailId="emailId" @remove="removeEmail" />
+      <router-view />
     </div>
  </section>
 `,

@@ -2,14 +2,15 @@ export default {
   template: `
  <section class="filter-container">
     <form @submit.prevent="submit">
-        <label>Search Email<input type="text" v-model="criteria.txtSearch" @input="filter"></label>
-        <ul class="clean-list">
+        <div class="search-email"><button class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button><label ><input type="text" v-model="criteria.txtSearch" placeholder="Search Email" @input="filter"></label></div>
+        
+        <ul class="clean-list flex filter-btn">
             <li>
-                <label>Read<input type="radio" :value="true" ref="filter1"  v-model="criteria.isRead" @click="filter" /></label>
+                <label for="read">Read<input type="radio" :value="true" ref="filter1" id="read"  v-model="criteria.isRead" @click="filter" /></label>
             </li>
             <li>
-                <label>Unread<input type="radio" :value="false" ref="filter2" v-model="criteria.isRead" @click="filter" /></label>
-            </li>
+                <label for="unread">Unread<input type="radio" id="unread" :value="false" ref="filter2" v-model="criteria.isRead" @click="filter" /></label>
+            </li> 
         </ul>
         <!-- <label>Read Emails<input
             type="checkbox"
@@ -17,7 +18,6 @@ export default {
             true-value="yes"
             false-value="no" />
         </label> -->
-        <button>Submit</button>
     </form>
  </section>
 `,

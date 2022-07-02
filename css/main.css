@@ -8,15 +8,21 @@
 @import "apps/mail//email-details.css";
 @import "apps/mail//email-nav.css";
 @import "apps/mail/email-preview.css";
+@import "basic/vars.css";
 /* email preview class */
 
 
 
 * {
     box-sizing: border-box;
+    font-family: Roboto,sans-serif;
 }
 body{
     margin: 0;
     width: 100%;
+    height: inherit;
 
+}
+html{
+    height: 100%;
 }

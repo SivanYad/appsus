@@ -21,11 +21,6 @@ export default {
     <router-view />
     </div>
  </section>
-<<<<<<< HEAD
-
-=======
- 
->>>>>>> 6090d345c9e829697ee0c448745b20ae7b38215b
 `,
   components: {
     emailFilter,

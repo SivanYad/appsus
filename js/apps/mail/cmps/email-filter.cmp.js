@@ -39,6 +39,7 @@ export default {
     filter() {
       let read = this.$refs.filter1
       let unread = this.$refs.filter2
+      console.log(read.value)
       if(read.checked) {
         this.criteria.isRead = true
       } else {

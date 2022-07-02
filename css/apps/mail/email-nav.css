@@ -1,6 +1,7 @@
 .email-nav {
     position: relative;
-    flex-direction: column;
+    
+        flex-direction: column;
     /* padding: 3.5em 3.5em 30px  3.5em; */
     border-right: 1px solid var(--clr1);
     box-shadow: -1px -3px 4px 0px black;

@@ -1,6 +1,6 @@
 
-const gEmails = {
-    sent: [
+const gEmails = 
+  [
         {
             id: 'e101',
             subject: 'Miss you!',
@@ -20,8 +20,7 @@ const gEmails = {
             status: 'sent'
           },
 
-    ],
-    inbox: [
+
         {
             id: 'e201',
             subject: 'Headache',
@@ -61,16 +60,10 @@ const gEmails = {
             from: 'jinx@amitmail.com',
             labels: ['romantic'],
             status: 'inbox'
-          }
-
-    ],
-    trash: [
-
-    ],
-    star: [
+          },
 
     ]
-}
+
 
 export const gVars  = {
     gEmails

@@ -12,6 +12,8 @@ export const storageServices = {
 // Get all books from storage
 function query(entityType) {
     var entities = JSON.parse(localStorage.getItem(entityType)) || []
+    // console.log(entities)
+
     return Promise.resolve(entities)
 }
 
@@ -20,6 +22,7 @@ function get(entityType, entityId){
     return query(entityType)
         .then(entities => entities.find(entity => entity.id === entityId))
 } 
+
 
 //Create new item 
 function post(entityType, newEntity) {
@@ -52,6 +55,8 @@ function put(entityType, updatedEntity) {
             _save(entityType, entities)
         })
 }
+
+
 
 //Remove an item
 function remove(entityType, entityId) {

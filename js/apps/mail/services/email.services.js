@@ -7,6 +7,7 @@ export const emailService = {
   remove,
   get,
   save,
+  changeArray
 }
 
 
@@ -20,12 +21,31 @@ _createEmails()
 function query(criteria) {
 
   return storageServices.query(EMAIL_KEY).then((emails) => {
-    emails = emails[criteria.status]
+    console.log(criteria)
+    if (!criteria.txtSearch) {
+        emails = emails.filter((email) => email.status === criteria.status)
+        // console.log(emails)
+    } else{
+        const regex = new RegExp(criteria.txtSearch, 'i')
+        emails = emails.filter((email) =>{
+            // console.log(emails)
+            return regex.test(email.body) &&
+            email.isRead === criteria.isRead &&
+            email.status === criteria.status
+        
+        })
+    }
     return emails
   })
 }
 
+function changeArray(email, newArr) {
+    console.log(gVars.gEmails)
+    return storageServices.putArray(EMAIL_KEY, email, newArr)
+}
+
 function remove(emailId) {
+    console.log('You are in remove')
   return storageServices.remove(EMAIL_KEY, emailId)
 }
 
@@ -41,7 +61,7 @@ function save(email) {
 function _createEmails() {
   let emails = utilService.loadFromStorage(EMAIL_KEY)
   if (!emails || !emails.length) {
-    console.log(gVars.gEmails)
+    // console.log(gVars.gEmails)
     emails = gVars.gEmails
     utilService.saveToStorage(EMAIL_KEY, emails)
   }

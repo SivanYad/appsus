@@ -21,9 +21,9 @@ return {
 }
 },
 created() {
-        console.log(this)
+
         const id = this.emailId
-        console.log(id)
+
     emailService.get(id).then(email =>  {this.email = email
     })
 },

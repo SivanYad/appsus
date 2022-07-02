@@ -1,4 +1,5 @@
 
+
 const gEmails = 
   [
         {
@@ -19,7 +20,15 @@ const gEmails =
             to: 'charm@lion.com',
             status: 'sent'
           },
-
+          {
+            id: 'e205',
+            subject: 'Cupcakes',
+            body: 'ugar plum jelly beans bear claw apple pie donut. Croissant pie sweet roll carrot cake carrot cake brownie candy lemon drops sesame snaps. Sesame snaps chupa chups bear claw sugar plum jujubes cheesecake topping sugar plum jelly-o.',
+            isRead: false,
+            sentAt: 1551133930575,
+            from: 'charm@lion.com',
+            status: 'inbox',
+          },
 
         {
             id: 'e201',
@@ -61,6 +70,16 @@ const gEmails =
             labels: ['romantic'],
             status: 'inbox'
           },
+          {
+            id: 'e206',
+            subject: 'Hey please work',
+            body: 'Muffin chocolate bar pudding tiramisu cookie chocolate cake pudding tart. Wafer bonbon caramels wafer liquorice jelly-o bear claw. Shortbread sesame snaps lollipop cupcake oat cake caramels powder brownie..',
+            isRead: false,
+            sentAt: 1656677548326,
+            from: 'jinx@amitmail.com',
+            labels: ['romantic'],
+            status: 'inbox'
+          },
 
     ]
 
@@ -68,3 +87,4 @@ const gEmails =
 export const gVars  = {
     gEmails
 }
+

@@ -112,6 +112,7 @@ export default {
     },
     filterEmails(criteria) {
       this.filterBy = criteria
+      console.log(this.filterBy)
     },
     setStatus(status) {
       this.status = status

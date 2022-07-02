@@ -1,4 +1,5 @@
 import { emailService } from '../services/email.services.js';
+import longText from '../../../cmps/long-text.cmp.js';
 
 
 
@@ -7,7 +8,8 @@ export default {
  template: `
  <section  v-if="email" class="emails-details">
     <h1>Subject:  {{ this.email.subject }}</h1>
-    <p>{{ this.email.body }}</p>
+    <!-- <p>{{ this.email.body }}</p> -->
+    <long-text :text="email.body" />
     <p>Sent At: {{formatDate}} </p>
     <p>To: {{this.email.to}}</p>
     <router-link to="/email">Back to list</router-link>
@@ -19,6 +21,9 @@ return {
     email: null,
     // id: this.$route.params.emailId,
 }
+},
+components: {
+    longText,
 },
 created() {
 

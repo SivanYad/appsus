@@ -8,5 +8,24 @@
 }
 
 .email-preview{
-    background-color: aqua;
+   
+    padding-block-start: 10px;
+    /* background-color: aqua; */
+    display: flex;
+    justify-content: space-between;
+    align-self: center;
+    /* border-radius: 15px; */
+    border-bottom: 1px solid var(--clr1);
+}
+.email-preview-container{
+}
+.emails-list{
+    padding-block-start: 5px;
+    padding-inline-start: 20px;
+    width: 980px;
+
+}
+.mail-info{
+    padding-left: 20px;
+    
 }

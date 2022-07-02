@@ -1,7 +1,7 @@
 export default {
 	props: ['text'],
 	template: `
-    <p>{{formatedText}}<span v-if="!isMore && longText">...</span> <span :style="readStyle" v-if="longText" @click="isMore=!isMore">{{readText}} </span></p>
+    <p >{{formatedText}} <span v-if="!isMore && longText">...</span> <span :style="readStyle" v-if="longText" @click="isMore=!isMore">{{readText}} </span></p>
 `,
 	data() {
 		return {
@@ -19,7 +19,7 @@ export default {
 		},
 		readStyle() {
 			return {
-				color: this.isMore ? 'red' : 'blue',
+				color: this.isMore ? 'var(--clr2)' : 'black',
 				cursor: 'pointer',
 				'text-decoration': 'underline',
 				// textDecoration: 'underline',

@@ -9,6 +9,8 @@
 @import "apps/mail//email-nav.css";
 @import "apps/mail/email-preview.css";
 @import "basic/vars.css";
+@import "apps/home-page.css";
+@import "apps/mail/email.compose.css";
 /* email preview class */
 
 

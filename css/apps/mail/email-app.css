@@ -6,8 +6,7 @@
     z-index: 1;
     top: 80px;
     left: 0;
-    overflow:auto;
-    float:left ;
+   
 }
 
 .filter-container input:focus {
@@ -20,6 +19,7 @@
     border: none;
     background: #f1f3f4;
     width: inherit;
+    width: 65%;
 
 
 }
@@ -57,5 +57,10 @@
 .filter-btn{
     display: flex;
     flex-direction: column;
+
+}
+.email-container{
+    
+    overflow:auto;
 
 }

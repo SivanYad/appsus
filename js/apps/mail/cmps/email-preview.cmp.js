@@ -5,7 +5,7 @@ export default {
   props: ['email'],
   template: `
  <section class="email-preview">
-    <h4 :class="titleStyle">{{ email.subject }}</h4>
+    <p class="mail-info" :class="titleStyle">{{ email.subject }}</p>
     <long-text :text="email.body" />
  </section>
 `,

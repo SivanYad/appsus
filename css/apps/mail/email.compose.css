@@ -1,0 +1,52 @@
+.compose-email-container form{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--clr1);
+    border-radius: 15px;
+    padding: 10px;
+}
+.email-subject{
+    flex-direction: row;
+}
+.email-body input:focus{
+    outline: none;
+    border: none;
+
+
+}
+.email-subject input {
+    outline: none;
+    border: none;
+
+}
+
+.email-to input {
+    border: none;
+    /* background: #f1f3f4; */
+    width: inherit;
+    width: 65%;
+
+
+}
+.email-to input:focus{
+    outline: none;
+    border: none;
+}
+
+.email-body  textarea{
+    height: 400px;
+    width: 600px;
+    border: none;
+}
+.email-body  textarea:focus{
+    border: none;
+}
+
+.compose-email-container form button{
+    background: none;
+    width: 100px;
+    height: 30px;
+    border: 1px solid var(--clr1);
+    border-radius: 10px;
+
+}

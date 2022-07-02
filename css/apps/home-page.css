@@ -1,0 +1,29 @@
+.home-page h3{
+   font-size: 50px;
+   text-align: center;
+  
+}
+.home-page  span{
+    color:#ef9fe4;
+    padding-right: 50px;
+}
+
+.home-page h2{
+    font-size: 35px;
+    text-align: center;
+    align-self: center;
+    padding-left: 50px;
+}
+
+.home-page{
+    display: flex;
+}
+
+.moto-container{
+    padding-inline-start: 70px;
+    padding-block-start: 100px;
+}
+
+.home-page svg{
+    height: 650px;
+}

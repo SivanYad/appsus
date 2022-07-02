@@ -110,6 +110,7 @@ export default {
       }
     },
     filterEmails(criteria) {
+        // console.log('clicked')
       this.filterBy = criteria
       console.log(this.filterBy)
     },
@@ -155,9 +156,11 @@ export default {
     filterBy: {
       handler() {
         let criteria = this.getCriteria()
+        
         const emails = emailService
           .query(criteria)
           .then((emails) => (this.emails = emails))
+          console.log('print criteria')
         return emails
       },
       deep: true,

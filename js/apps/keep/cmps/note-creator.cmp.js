@@ -18,7 +18,7 @@ export default {
             
         </div>
         <div v-if="isTodo">
-            <form @submit.prevent="createNoteTypeTodo">
+            <form @submit.prevent="createNoteTypeTodo" class="craete-todos-container">
                 <input type="text" v-model="todoData.label">
             <input type="text" v-for="(todo,idx) in todoList" v-model="todoList[idx].txt" @keypress="addTodo(idx)">
             <button>close</button>

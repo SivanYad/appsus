@@ -17,8 +17,8 @@
 
 input[type=radio] {
     position: absolute;
-    /* visibility: hidden; */
-    /* display: none; */
+    visibility: hidden;
+    display: none;
     text-decoration: none;
 
 }

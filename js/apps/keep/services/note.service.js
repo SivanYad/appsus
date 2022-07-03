@@ -57,7 +57,7 @@ function _createNotes() {
         id: "n102",
         type: "note-img",
         info: {
-            url: "../../../imgs/img1.png",
+            url: "/imgs/img1.png",
             label: "Me and Everyone here"
         },
         style: {
